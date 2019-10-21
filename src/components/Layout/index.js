@@ -5,8 +5,8 @@ import styles from './layout.module.scss';
 const Layout = () => {
   return (
     <main className={styles.main}>
-      <Master />
-      <Detail />
+      <Master className={styles.master} />
+      <Detail className={styles.detail} />
     </main>
   );
 };

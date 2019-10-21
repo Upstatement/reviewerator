@@ -1,3 +1,51 @@
+@import '../../styles/functions/ms';
+@import '../../styles/variables/colors';
+
 .detail {
   flex: 3;
+  padding: ms(3);
+}
+
+@media print, screen {
+  .skill {
+    margin-bottom: ms(3);
+  }
+
+  .skillName,
+  .skillLevel {
+    font-size: ms(0);
+    margin: 0 0 ms(-2);
+    display: inline-block;
+  }
+
+  .skillLevel {
+    font-family: monospace;
+    font-weight: 300;
+    margin-left: ms(0);
+  }
+
+  .levelNumber {
+    font-family: monospace;
+    font-weight: 800;
+    color: white;
+    display: inline-block;
+    padding: ms(-3);
+  }
+
+  .levelBar {
+    display: block;
+    height: ms(3);
+
+    &.notApplicable {
+      display: none;
+    }
+  }
+
+  .levelBlock {
+    text-align: right;
+    background-color: $ultramarine;
+    display: inline-block;
+    height: 100%;
+    width: 25%;
+  }
 }

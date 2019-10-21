@@ -29,8 +29,10 @@ $option-padding: ms(-4) ms(-2) ms(-3);
 .customOptionList {
   @include transition(
     $property: (
-      opacity,
       height,
+      opacity,
+      outline,
+      padding-top,
     ),
     $duration: 150ms
   );
@@ -42,28 +44,31 @@ $option-padding: ms(-4) ms(-2) ms(-3);
   font-size: ms(-1);
   opacity: 0;
   overflow: hidden;
+  pointer-events: none;
   position: absolute;
   transition-delay: 0.1s;
   width: 100%;
   z-index: 1;
+
+  .isOpen & {
+    opacity: 1;
+    outline: solid $ultramarine;
+    padding-top: ms(3);
+    pointer-events: all;
+  }
 }
 
 .customOptionWrapper {
   @include transition($property: top, $duration: 150ms);
   height: ms(3);
-  position: absolute;
-  // top: ms(3);
   width: 100%;
-
-  &.selected {
-    top: 0;
-  }
 }
 
 .label {
   @include label-text;
   display: block;
   margin-bottom: ms(-4);
+  pointer-events: none;
 }
 
 .OSoption {
@@ -84,12 +89,9 @@ $option-padding: ms(-4) ms(-2) ms(-3);
   z-index: 2;
 
   &:focus {
+    background-color: $ultramarine;
+    color: white;
     outline: 0;
-
-    + .customOptionList {
-      height: 2 * ms(3);
-      opacity: 1;
-    }
   }
 }
 
@@ -111,7 +113,7 @@ $option-padding: ms(-4) ms(-2) ms(-3);
 
   &:focus-within {
     &::after {
-      color: $gray-80;
+      color: white;
     }
   }
 }

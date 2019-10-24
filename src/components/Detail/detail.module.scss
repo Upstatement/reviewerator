@@ -3,49 +3,92 @@
 
 .detail {
   flex: 3;
-  padding: ms(3);
+  font-family: 'Dia';
+  padding: ms(2) ms(3) ms(3) ms(3);
 }
 
-@media print, screen {
-  .skill {
-    margin-bottom: ms(3);
-  }
+.header {
+  font-family: 'Dia-Black';
+  font-size: ms(0);
+  letter-spacing: ms(-9);
+  text-align: center;
+  text-transform: uppercase;
+}
 
-  .skillName,
-  .skillLevel {
-    font-size: ms(0);
-    margin: 0 0 ms(-2);
-    display: inline-block;
-  }
+.chart {
+  border-bottom: 1px solid $gray-30;
+  border-top: 1px solid $gray-30;
+  padding: ms(-3) 0;
+  position: relative;
+  width: 100%;
+}
 
-  .skillLevel {
-    font-family: monospace;
-    font-weight: 300;
-    margin-left: ms(0);
-  }
+.dividers {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
 
-  .levelNumber {
-    font-family: monospace;
-    font-weight: 800;
-    color: white;
-    display: inline-block;
-    padding: ms(-3);
-  }
+.divider {
+  background: $gray-30;
+  flex: none;
+  height: 100%;
+  width: 1px;
+}
 
-  .levelBar {
-    display: block;
-    height: ms(3);
+.skills {
+  position: relative;
+}
 
-    &.notApplicable {
-      display: none;
-    }
+.skill {
+  position: relative;
+}
+
+.skillName {
+  font-size: ms(-1);
+  display: inline-block;
+  font-weight: 400;
+  margin: 0 0 0 ms(0);
+}
+
+.skillName {
+  color: white;
+  position: absolute;
+  top: ms(2);
+}
+
+.levelBar {
+  display: block;
+  height: ms(5);
+  padding: ms(-3) 0;
+}
+
+.levelBlock {
+  background-color: $ultramarine;
+  display: inline-block;
+  height: 100%;
+  text-align: right;
+  width: 25%;
+}
+
+.notApplicable {
+  + .skillName {
+    color: $gray-40;
   }
 
   .levelBlock {
-    text-align: right;
-    background-color: $ultramarine;
-    display: inline-block;
-    height: 100%;
-    width: 25%;
+    background: none;
   }
+}
+
+.labels {
+  display: flex;
+  font-weight: 700;
+  justify-content: space-around;
+  margin-top: ms(-1);
+  width: 100%;
 }

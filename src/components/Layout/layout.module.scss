@@ -1,6 +1,13 @@
-.main {
+@import '../../styles/functions/ms';
+@import '../../styles/mixins/button-reset';
+@import '../../styles/mixins/transitions';
+@import '../../styles/variables/colors';
+
+$toggle-btn-height: ms(3);
+
+.layout {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - #{$toggle-btn-height});
   overflow: hidden;
 }
 
@@ -9,8 +16,41 @@
   overflow-y: scroll;
 }
 
-@media print {
-  .master {
-    display: none;
+.master {
+  position: relative;
+}
+
+.master.hidden {
+  display: none;
+}
+
+.showHideBtn {
+  @include button-reset;
+  @include transition;
+
+  background: $gray-80;
+  color: white;
+  display: block;
+  font-size: ms(-2);
+  font-weight: 500;
+  height: $toggle-btn-height;
+  left: 0;
+  padding-left: ms(3);
+  position: sticky;
+  text-align: left;
+  text-transform: uppercase;
+  top: 0;
+  width: 100%;
+
+  &:hover {
+    color: $ultramarine;
+  }
+
+  &.show {
+    opacity: 0;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }

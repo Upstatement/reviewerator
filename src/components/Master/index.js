@@ -2,33 +2,11 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ViewContext, Select } from 'components';
 import { className } from 'utils';
+import { options } from 'data';
 import styles from './master.module.scss';
 
 const Master = ({ children, className: customClassName, }) => {
   const [state, setState] = useContext(ViewContext);
-
-  const options = [
-    {
-      displayText: "I don't know.",
-      optValue: 'n/a',
-    },
-    {
-      displayText: 'Needs Improvement',
-      optValue: 1,
-    },
-    {
-      displayText: 'Learning & Building',
-      optValue: 2,
-    },
-    {
-      displayText: 'Full/Consistent Impact',
-      optValue: 3,
-    },
-    {
-      displayText: 'Exceptional Impact',
-      optValue: 4,
-    }
-  ];
 
   const updateContext = (property, value) => {
     const update = {};

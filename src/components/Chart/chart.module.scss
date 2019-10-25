@@ -1,0 +1,53 @@
+@import '../../styles/functions/ms';
+@import '../../styles/variables/colors';
+
+.chartWrapper {
+  flex: 3;
+  font-family: 'Dia';
+  padding: ms(2) ms(3) ms(3) ms(3);
+}
+
+.header {
+  font-family: 'Dia-Black';
+  font-size: ms(0);
+  letter-spacing: ms(-9);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.chart {
+  border-bottom: 1px solid $gray-30;
+  border-top: 1px solid $gray-30;
+  padding: ms(-3) 0;
+  position: relative;
+  width: 100%;
+}
+
+.dividers {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.divider {
+  background: $gray-30;
+  flex: none;
+  height: 100%;
+  width: 1px;
+}
+
+.skills {
+  position: relative;
+}
+
+.labels {
+  display: flex;
+  font-weight: 700;
+  justify-content: space-around;
+  margin-top: ms(-1);
+  width: 100%;
+}

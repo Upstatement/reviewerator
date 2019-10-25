@@ -1,0 +1,83 @@
+@import '../../../styles/mixins/transitions';
+@import '../../../styles/functions/ms';
+@import '../../../styles/variables/colors';
+
+.levelBar {
+  display: block;
+  height: ms(5);
+  margin: ms(0) 0;
+  position: relative;
+
+  &:hover {
+    .levelBlock {
+      background-color: $ultramarine;
+
+      &:hover {
+        background-color: $light-blue;
+
+        ~ .levelBlock {
+          background-color: unset;
+
+          &.achieved {
+            background-color: $gray-20;
+          }
+        }
+      }
+    }
+  }
+
+  &:focus-within {
+    margin-left: -1 * ms(-4);
+    border-left: ms(-4) solid $deep-blue;
+  }
+}
+
+.levelBlock {
+  @include transition($duration: 75ms);
+
+  display: inline-block;
+  height: 100%;
+  width: 25%;
+
+  &.achieved {
+    background-color: $ultramarine;
+  }
+}
+
+.notApplicable {
+  + .skillName {
+    color: $gray-40;
+  }
+
+  .levelBlock {
+    background: none;
+  }
+}
+
+.levelBlockLabel {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.levelBlockInput {
+  height: 0;
+  margin: 0;
+  opacity: 0;
+  width: 0;
+}
+
+.skillName {
+  color: white;
+  display: inline-block;
+  font-size: ms(-1);
+  font-weight: 400;
+  left: ms(0);
+  margin: 0;
+  position: absolute;
+  top: ms(-6) + ms(-1);
+}

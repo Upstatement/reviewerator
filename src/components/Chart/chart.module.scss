@@ -1,7 +1,7 @@
 @import '../../styles/functions/ms';
 @import '../../styles/variables/colors';
 
-.detail {
+.chartWrapper {
   flex: 3;
   font-family: 'Dia';
   padding: ms(2) ms(3) ms(3) ms(3);
@@ -42,47 +42,6 @@
 
 .skills {
   position: relative;
-}
-
-.skill {
-  position: relative;
-}
-
-.skillName {
-  font-size: ms(-1);
-  display: inline-block;
-  font-weight: 400;
-  margin: 0 0 0 ms(0);
-}
-
-.skillName {
-  color: white;
-  position: absolute;
-  top: ms(2);
-}
-
-.levelBar {
-  display: block;
-  height: ms(5);
-  padding: ms(-3) 0;
-}
-
-.levelBlock {
-  background-color: $ultramarine;
-  display: inline-block;
-  height: 100%;
-  text-align: right;
-  width: 25%;
-}
-
-.notApplicable {
-  + .skillName {
-    color: $gray-40;
-  }
-
-  .levelBlock {
-    background: none;
-  }
 }
 
 .labels {

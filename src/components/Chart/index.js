@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ViewContext } from 'components';
 import { className } from 'utils';
-import { options } from 'data';
+import { staff, manager, options } from 'data';
 import styles from './chart.module.scss';
-import { SkillLevelRadio } from 'components';
+import { Select, SkillLevelRadio } from 'components';
 
 const Chart = ({ className: customClassName, }) => {
   const [context, setContext] = useContext(ViewContext);
@@ -40,7 +40,23 @@ const Chart = ({ className: customClassName, }) => {
 
   return (
     <section {...className(customClassName, styles.chartWrapper)}>
-      <h1 className={styles.header}>Performance Chart</h1>
+      <h1 className={styles.header}>
+        <Select
+          defaultVal={'manager'}
+          options={[
+            {
+              displayText: 'Manager',
+              optValue: 'manager',
+            },
+            {
+              displayText: 'Staff',
+              optValue: 'staff',
+            }
+          ]}
+          reportValue={resetContext}
+        />
+        Performance Chart
+      </h1>
       <div className={styles.chart}>
         <div className={styles.dividers}>
           {[...Array(options.length + 1)].map((undefinedPlaceholder, i) => (

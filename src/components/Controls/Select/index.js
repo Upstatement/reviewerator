@@ -20,7 +20,7 @@ const Select = ({ className: customClassName, defaultVal, labelText, options, re
 
   const handleChange = value => {
     setValue(value);
-    reportValue(property, value);
+    reportValue(value);
     handleOpen();
   };
 

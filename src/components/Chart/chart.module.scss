@@ -8,8 +8,11 @@
 }
 
 .header {
+  align-items: baseline;
+  display: flex;
   font-family: 'Dia-Black';
   font-size: ms(0);
+  justify-content: center;
   letter-spacing: ms(-9);
   text-align: center;
   text-transform: uppercase;

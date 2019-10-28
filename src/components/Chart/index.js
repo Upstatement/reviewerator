@@ -7,12 +7,13 @@ import styles from './chart.module.scss';
 import { SkillLevelRadio } from 'components';
 
 const Chart = ({ className: customClassName, }) => {
-  const [state, setState] = useContext(ViewContext);
+  const [context, setContext] = useContext(ViewContext);
 
   const updateContext = (property, value) => {
     const update = {};
-    update[property] = { ...state[property], level: value, };
-    setState(state => ({ ...state, ...update, }));
+    update[property] = { ...context[property], level: value, };
+    setContext(context => ({ ...context, ...update, }));
+  };
   };
 
   return (
@@ -25,12 +26,12 @@ const Chart = ({ className: customClassName, }) => {
           ))}
         </div>
         <div className={styles.skills}>
-          {Object.keys(state).map((skill, i) => (
+          {Object.keys(context).map((skill, i) => (
             <article key={i} className={styles.skill}>
               <SkillLevelRadio
                 options={options}
-                defaultVal={state[skill].level}
-                labelText={state[skill].displayText}
+                defaultVal={context[skill].level}
+                labelText={context[skill].displayText}
                 property={skill}
                 reportValue={updateContext}
               />

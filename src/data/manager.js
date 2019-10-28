@@ -1,4 +1,4 @@
-const defaults = {
+const manager = {
   ideasAndSolutions: {
     displayText: 'Ideas & Solutions',
     level: 1,
@@ -45,4 +45,4 @@ const defaults = {
   },
 };
 
-export default defaults;
+export default manager;

@@ -14,6 +14,28 @@ const Chart = ({ className: customClassName, }) => {
     update[property] = { ...context[property], level: value, };
     setContext(context => ({ ...context, ...update, }));
   };
+
+  const resetContext = newContextName => {
+    // Get the new context object based on the string
+    // value reported by our select element.
+    let newContext = {};
+    if (newContextName === 'staff') {
+      newContext = { ...staff, };
+    } else if (newContextName === 'manager') {
+      newContext = { ...manager, };
+    }
+
+    // Find any properties on the old context that are present
+    // in the new context, and carry over their old value to the
+    // new context.
+    Object.keys(newContext).forEach(property => {
+      if (context[property]) {
+        newContext[property] = context[property];
+      }
+    });
+
+    // Overwrite the old context with the new one.
+    setContext(newContext);
   };
 
   return (

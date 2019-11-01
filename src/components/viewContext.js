@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { defaults } from 'data';
+import { manager } from 'data';
 
 const ViewContext = React.createContext([{}, () => {}]);
 
 const ViewProvider = ({ ...props }) => {
-  const [state, setState] = useState({ ...defaults, });
+  const [state, setState] = useState({ ...manager, });
 
   return <ViewContext.Provider value={[state, setState]}>{props.children}</ViewContext.Provider>;
 };

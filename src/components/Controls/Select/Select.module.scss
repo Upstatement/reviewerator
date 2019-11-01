@@ -5,11 +5,106 @@
 @import '../../../styles/functions/ms';
 @import '../../../styles/variables/colors';
 
-$option-padding: ms(-4) ms(-2) ms(-3);
+@mixin inherit-type-styles {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+}
+
+$option-padding: ms(-5);
+$option-button-height: calc(#{ms(0)} + (2 * #{$option-padding} * #{$ms-ratio}));
+
+.outerWrapper,
+.innerWrapper,
+.selectButton,
+.customOptionWrapper,
+.customOptionList {
+  @include inherit-type-styles;
+}
+
+.innerWrapper {
+  height: $option-button-height;
+  position: relative;
+}
+
+.label {
+  @include label-text;
+  display: block;
+  margin-bottom: ms(-4);
+  pointer-events: none;
+}
+
+.selectButton {
+  @include button-reset;
+  background-color: white;
+  border-radius: 2px;
+  border: 0;
+  cursor: pointer;
+  padding: $option-padding ($option-padding * $ms-ratio);
+  position: relative;
+  text-align: right;
+  width: 100%;
+  z-index: 2;
+  height: $option-button-height;
+
+  &:hover,
+  &:focus {
+    color: $ultramarine;
+    outline: 0;
+  }
+}
+
+.OSoption {
+  display: none;
+}
+
+.customOptionList {
+  @include transition(
+    $property: (
+      box-shadow,
+      height,
+      opacity,
+      padding-top,
+    ),
+    $duration: 150ms
+  );
+  @include ul-reset;
+  background-color: white;
+  border-radius: 2px;
+  display: flex;
+  flex-flow: column;
+  left: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transition-delay: 0.1s;
+  width: 100%;
+  z-index: 1;
+
+  .isOpen & {
+    opacity: 1;
+    padding-top: $option-button-height;
+    pointer-events: all;
+    box-shadow: 0px 2px 3px 3px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.customOptionWrapper {
+  @include transition($property: top, $duration: 150ms);
+  height: $option-button-height;
+  width: 100%;
+}
 
 .customOptionButton {
   @include button-reset;
   color: $gray-90;
+  font-size: ms(-1);
+  font-weight: 400;
+  font-family: 'Dia';
   height: 100%;
   padding: $option-padding;
   text-align: left;
@@ -26,98 +121,6 @@ $option-padding: ms(-4) ms(-2) ms(-3);
   }
 }
 
-.customOptionList {
-  @include transition(
-    $property: (
-      height,
-      opacity,
-      outline,
-      padding-top,
-    ),
-    $duration: 150ms
-  );
-  @include ul-reset;
-  background-color: white;
-  border-radius: 2px;
-  display: flex;
-  flex-flow: column;
-  font-size: ms(-1);
-  opacity: 0;
-  overflow: hidden;
-  pointer-events: none;
-  position: absolute;
-  transition-delay: 0.1s;
-  width: 100%;
-  z-index: 1;
-
-  .isOpen & {
-    opacity: 1;
-    outline: solid $ultramarine;
-    padding-top: ms(3);
-    pointer-events: all;
-  }
-}
-
-.customOptionWrapper {
-  @include transition($property: top, $duration: 150ms);
-  height: ms(3);
-  width: 100%;
-}
-
-.label {
-  @include label-text;
-  display: block;
-  margin-bottom: ms(-4);
-  pointer-events: none;
-}
-
-.OSoption {
-  display: none;
-}
-
-.select {
-  appearance: none;
-  background-color: white;
-  border: 0;
-  border-radius: 2px;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: ms(-1);
-  padding: $option-padding;
-  position: absolute;
-  width: 100%;
-  z-index: 2;
-
-  &:focus {
-    background-color: $ultramarine;
-    color: white;
-    outline: 0;
-  }
-}
-
-.wrapper {
-  height: ms(3);
-  position: relative;
-
-  &::after {
-    color: $gray-40;
-    content: '•••';
-    height: 100%;
-    line-height: 1.7;
-    pointer-events: none;
-    position: absolute;
-    right: ms(-3);
-    top: 0;
-    z-index: 3;
-  }
-
-  &:focus-within {
-    &::after {
-      color: white;
-    }
-  }
-}
-
 :export {
-  varOptionHeight: ms($steps: 3, $base: 1);
+  varOptionHeight: $option-button-height;
 }

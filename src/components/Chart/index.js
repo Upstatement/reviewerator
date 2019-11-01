@@ -2,22 +2,61 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ViewContext } from 'components';
 import { className } from 'utils';
-import { options } from 'data';
+import { staff, manager, options } from 'data';
 import styles from './chart.module.scss';
-import { SkillLevelRadio } from 'components';
+import { Select, SkillLevelRadio } from 'components';
 
 const Chart = ({ className: customClassName, }) => {
-  const [state, setState] = useContext(ViewContext);
+  const [context, setContext] = useContext(ViewContext);
 
   const updateContext = (property, value) => {
     const update = {};
-    update[property] = { ...state[property], level: value, };
-    setState(state => ({ ...state, ...update, }));
+    update[property] = { ...context[property], level: value, };
+    setContext(context => ({ ...context, ...update, }));
+  };
+
+  const resetContext = newContextName => {
+    // Get the new context object based on the string
+    // value reported by our select element.
+    let newContext = {};
+    if (newContextName === 'staff') {
+      newContext = { ...staff, };
+    } else if (newContextName === 'manager') {
+      newContext = { ...manager, };
+    }
+
+    // Find any properties on the old context that are present
+    // in the new context, and carry over their old value to the
+    // new context.
+    Object.keys(newContext).forEach(property => {
+      if (context[property]) {
+        newContext[property] = context[property];
+      }
+    });
+
+    // Overwrite the old context with the new one.
+    setContext(newContext);
   };
 
   return (
     <section {...className(customClassName, styles.chartWrapper)}>
-      <h1 className={styles.header}>Performance Chart</h1>
+      <h1 className={styles.header}>
+        <Select
+          defaultVal={'manager'}
+          options={[
+            {
+              displayText: 'Manager',
+              optValue: 'manager',
+            },
+            {
+              displayText: 'Staff',
+              optValue: 'staff',
+            }
+          ]}
+          reportValue={resetContext}
+        />
+        Performance Chart
+      </h1>
       <div className={styles.chart}>
         <div className={styles.dividers}>
           {[...Array(options.length + 1)].map((undefinedPlaceholder, i) => (
@@ -25,12 +64,12 @@ const Chart = ({ className: customClassName, }) => {
           ))}
         </div>
         <div className={styles.skills}>
-          {Object.keys(state).map((skill, i) => (
+          {Object.keys(context).map((skill, i) => (
             <article key={i} className={styles.skill}>
               <SkillLevelRadio
                 options={options}
-                defaultVal={state[skill].level}
-                labelText={state[skill].displayText}
+                defaultVal={context[skill].level}
+                labelText={context[skill].displayText}
                 property={skill}
                 reportValue={updateContext}
               />

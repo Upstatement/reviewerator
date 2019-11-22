@@ -10,7 +10,7 @@
 
   &:hover {
     .levelBlock {
-      background-color: $ultramarine;
+      background-color: $ups-blue;
 
       &:hover {
         &:not(.currentLevel) {
@@ -21,7 +21,7 @@
           background-color: unset;
 
           &.achieved {
-            background-color: $gray-20;
+            background-color: $gray-50;
           }
         }
       }
@@ -37,7 +37,7 @@
   width: 25%;
 
   &.achieved {
-    background-color: $ultramarine;
+    background-color: $ups-blue;
   }
 }
 

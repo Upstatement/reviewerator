@@ -1,6 +1,6 @@
-@import '../../../styles/mixins/transitions';
-@import '../../../styles/functions/ms';
-@import '../../../styles/variables/colors';
+@import '../../styles/mixins/transitions';
+@import '../../styles/functions/ms';
+@import '../../styles/variables/colors';
 
 .levelBar {
   display: block;
@@ -13,7 +13,9 @@
       background-color: $ultramarine;
 
       &:hover {
-        background-color: $light-blue;
+        &:not(.currentLevel) {
+          background-color: $light-blue;
+        }
 
         ~ .levelBlock {
           background-color: unset;
@@ -24,11 +26,6 @@
         }
       }
     }
-  }
-
-  &:focus-within {
-    margin-left: -1 * ms(-4);
-    border-left: ms(-4) solid $deep-blue;
   }
 }
 
@@ -78,6 +75,7 @@
   font-weight: 400;
   left: ms(0);
   margin: 0;
+  pointer-events: none;
   position: absolute;
   top: ms(-6) + ms(-1);
 }

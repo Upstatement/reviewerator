@@ -1,9 +1,9 @@
-@import '../../../styles/mixins/label-text';
-@import '../../../styles/mixins/transitions';
-@import '../../../styles/mixins/button-reset';
-@import '../../../styles/mixins/ul-reset';
-@import '../../../styles/functions/ms';
-@import '../../../styles/variables/colors';
+@import '../../styles/mixins/label-text';
+@import '../../styles/mixins/transitions';
+@import '../../styles/mixins/button-reset';
+@import '../../styles/mixins/ul-reset';
+@import '../../styles/functions/ms';
+@import '../../styles/variables/colors';
 
 @mixin inherit-type-styles {
   font-size: inherit;

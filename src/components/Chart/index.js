@@ -2,23 +2,12 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ViewContext } from 'components';
 import { className } from 'utils';
-import { staff, manager, levels } from 'data';
+import { staff, manager, levels, roleOptions } from 'data';
 import styles from './chart.module.scss';
 import { Select, SkillLevelRadio } from 'components';
 
 const Chart = ({ className: customClassName, }) => {
   const [context, setContext] = useContext(ViewContext);
-
-  const roleOptions = [
-    {
-      displayText: 'Manager',
-      optValue: 'manager',
-    },
-    {
-      displayText: 'Staff',
-      optValue: 'staff',
-    }
-  ];
 
   const updateContext = (property, value) => {
     const update = {};

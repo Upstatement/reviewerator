@@ -68,7 +68,7 @@ const Chart = ({ className: customClassName, }) => {
             <article key={i} className={styles.skill}>
               <SkillLevelRadio
                 options={options}
-                defaultVal={context[skill].level}
+                defaultVal={1}
                 labelText={context[skill].displayText}
                 property={skill}
                 reportValue={updateContext}

@@ -7,7 +7,7 @@ const Radio = ({ defaultVal, labelText, options, property, reportValue, }) => {
   const [value, setValue] = useState(defaultVal);
 
   const handleChange = e => {
-    setValue(e.target.value);
+    setValue(parseInt(e.target.value));
   };
 
   useEffect(() => {

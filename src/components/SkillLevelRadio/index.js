@@ -12,6 +12,7 @@ const Radio = ({ defaultVal, labelText, options, property, reportValue, }) => {
 
   useEffect(() => {
     reportValue(property, value);
+    // eslint-disable-next-line
   }, [value]);
 
   return (

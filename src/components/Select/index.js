@@ -2,7 +2,7 @@
 import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { className } from 'utils';
-import styles from './Select.module.scss';
+import styles from './select.module.scss';
 
 const OPTION_HEIGHT = parseFloat(styles.varOptionHeight);
 

@@ -1,9 +1,9 @@
-@import '../../../styles/mixins/label-text';
-@import '../../../styles/mixins/transitions';
-@import '../../../styles/mixins/button-reset';
-@import '../../../styles/mixins/ul-reset';
-@import '../../../styles/functions/ms';
-@import '../../../styles/variables/colors';
+@import '../../styles/mixins/label-text';
+@import '../../styles/mixins/transitions';
+@import '../../styles/mixins/button-reset';
+@import '../../styles/mixins/ul-reset';
+@import '../../styles/functions/ms';
+@import '../../styles/variables/colors';
 
 @mixin inherit-type-styles {
   font-size: inherit;
@@ -38,20 +38,20 @@ $option-button-height: calc(#{ms(0)} + (2 * #{$option-padding} * #{$ms-ratio}));
 
 .selectButton {
   @include button-reset;
-  background-color: white;
+  background-color: $gray-60;
   border-radius: 2px;
   border: 0;
   cursor: pointer;
+  height: $option-button-height;
   padding: $option-padding ($option-padding * $ms-ratio);
   position: relative;
   text-align: right;
   width: 100%;
   z-index: 2;
-  height: $option-button-height;
 
   &:hover,
   &:focus {
-    color: $ultramarine;
+    color: $light-blue;
     outline: 0;
   }
 }
@@ -71,7 +71,7 @@ $option-button-height: calc(#{ms(0)} + (2 * #{$option-padding} * #{$ms-ratio}));
     $duration: 150ms
   );
   @include ul-reset;
-  background-color: white;
+  background-color: $gray-60;
   border-radius: 2px;
   display: flex;
   flex-flow: column;
@@ -101,7 +101,7 @@ $option-button-height: calc(#{ms(0)} + (2 * #{$option-padding} * #{$ms-ratio}));
 
 .customOptionButton {
   @include button-reset;
-  color: $gray-90;
+  color: white;
   font-size: ms(-1);
   font-weight: 400;
   font-family: 'Dia';
@@ -116,7 +116,7 @@ $option-button-height: calc(#{ms(0)} + (2 * #{$option-padding} * #{$ms-ratio}));
   @include transition;
 
   &:hover {
-    background-color: $ultramarine;
+    background-color: $ups-blue;
     color: white;
   }
 }

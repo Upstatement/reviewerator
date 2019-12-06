@@ -1,4 +1,4 @@
-const options = [
+const levels = [
   {
     displayText: 'Needs Improvement',
     optValue: 1,
@@ -21,4 +21,4 @@ const options = [
   }
 ];
 
-export default options;
+export default levels;

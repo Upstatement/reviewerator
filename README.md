@@ -1,68 +1,114 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# reviewerator
 
-## Available Scripts
+Generate staff, manager, and position-specific performance review charts like never before.
 
-In the project directory, you can run:
+A React project, bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### `npm start`
+1. [Development Workflow](#development-workflow)
+1. [Editing Review Criteria](#editing-review-criteria)
+1. [Making a Review](#making-and-exporting-a-review)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Development Workflow
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Install dependencies:
 
-### `npm test`
+```
+npm install
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Start the development server:
 
-### `npm run build`
+```sh
+npm start
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> Starts the app in development mode at [http://localhost:3000](http://localhost:3000) with hot reloading enabled
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Editing Review Criteria
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Review criteria are composed of 2 axes: **performance categories** and **performance levels**.
 
-### `npm run eject`
+**Categories** are grouped into skill profiles according to the role of the employee being reviewed. All categories are scored against the same set of **levels**.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+All of these axes live in the `src/data` directory of the app, like so:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+|src
+|--data
+|----index.js
+|----levels.js
+|----manager.js
+|----staff.js
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### To add, remove, or rename categories/levels:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+You may simply change the contents of any file to see the changes reflected in the application's interface.
 
-## Learn More
+> :warning: Be sure to follow the existing data structure in the file you're editing.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### To create a role:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Create a file at `src/data/newRole.js`, using the following shape:
 
-### Code Splitting
+   ```js
+   const newRole = {
+     skillName: {
+       displayText: 'Skill Name',
+       level: 1,
+     }
+     ...
+   };
+   ```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+1. Import it in `src/data/index.js`
+1. Add it as an option in `src/data/roleOptions.js`
+1. Import it in `src/components/Chart/index.js`
+1. Add it to the `resetContext` function in `src/components/Chart/index.js`:
+   ```js
+   ...
+   } else if (newContextName === 'newRole') {
+     newContext = { ...newRole, };
+   }
+   ```
+1. If you want it to become the default role (the one shown when the application loads), import it in `src/components/viewContext.js`
 
-### Analyzing the Bundle Size
+## Making and Exporting a Review
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### To set a skill level
 
-### Making a Progressive Web App
+Along the axis of the skill, click within the desired level range
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+![Setting A Skill Level](/public/tutorial/set-a-skill-level.gif 'Setting a Skill Level')
 
-### Advanced Configuration
+### To change the skills profile
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Click on the current profile name in the chart title (default is "Manager") to reveal a dropdown of options
 
-### Deployment
+![Change the Skills Profile](/public/tutorial/change-skills-profile.gif 'Change the Skills Profile')
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+### To clear the matrix
 
-### `npm run build` fails to minify
+Refresh the page
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### To export the chart
+
+You have two options:
+
+#### Take a screenshot
+
+Super quick, but not scalable.
+
+#### Print the page to a PDF
+
+Also quick, and gives you a nice vector PDF file. Has a few steps, though:
+
+1. Press `CMD+P` to summon the print dialogue
+1. Select "Destination > Save as PDF"
+1. Select "Margins > None"
+1. If in Chrome, click "More Settings", and select tick "Options > Background graphics"
+1. Depending on the size of the chart, you may need to decrease the scale to fit it with its intended proportions. 70 usually works.
+
+![Printing the Chart](/public/tutorial/printing.gif 'Printing the Chart')
+
+> Printing to a PDF leaves a sizable amount of whitespace around the chart. If you don't feel like cropping, just take a screenshot.

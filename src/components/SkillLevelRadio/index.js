@@ -7,11 +7,12 @@ const Radio = ({ defaultVal, labelText, options, property, reportValue, }) => {
   const [value, setValue] = useState(defaultVal);
 
   const handleChange = e => {
-    setValue(e.target.value);
+    setValue(parseInt(e.target.value));
   };
 
   useEffect(() => {
     reportValue(property, value);
+    // eslint-disable-next-line
   }, [value]);
 
   return (
@@ -21,7 +22,7 @@ const Radio = ({ defaultVal, labelText, options, property, reportValue, }) => {
           key={i}
           {...className(
             styles.levelBlock,
-            value === optValue && isNaN(value) && styles.notApplicable,
+            optValue === value && styles.currentLevel,
             optValue <= value && styles.achieved
           )}>
           <label htmlFor={`${property}-${valueText}`} className={styles.levelBlockLabel}>

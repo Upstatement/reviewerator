@@ -3,11 +3,11 @@ import { ViewProvider, Layout } from 'components';
 
 const App = () => {
   return (
-    <main>
+    <div>
       <ViewProvider>
         <Layout />
       </ViewProvider>
-    </main>
+    </div>
   );
 };
 

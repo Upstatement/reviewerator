@@ -38,7 +38,7 @@ $option-button-height: calc(#{ms(0)} + (2 * #{$option-padding} * #{$ms-ratio}));
 
 .selectButton {
   @include button-reset;
-  background-color: $gray-60;
+  background-color: $chart-background-color;
   border-radius: 2px;
   border: 0;
   cursor: pointer;
@@ -71,7 +71,7 @@ $option-button-height: calc(#{ms(0)} + (2 * #{$option-padding} * #{$ms-ratio}));
     $duration: 150ms
   );
   @include ul-reset;
-  background-color: $gray-60;
+  background-color: $chart-background-color;
   border-radius: 2px;
   display: flex;
   flex-flow: column;
@@ -101,7 +101,7 @@ $option-button-height: calc(#{ms(0)} + (2 * #{$option-padding} * #{$ms-ratio}));
 
 .customOptionButton {
   @include button-reset;
-  color: white;
+  color: $chart-text-color;
   font-size: ms(-1);
   font-weight: 400;
   font-family: 'Dia';

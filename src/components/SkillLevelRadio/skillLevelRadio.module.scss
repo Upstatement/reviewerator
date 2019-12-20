@@ -10,7 +10,9 @@
 
   &:hover {
     .levelBlock {
-      background-color: $ups-blue;
+      &:not(.target) {
+        background-color: $ups-blue;
+      }
 
       &:hover {
         &:not(.currentLevel) {
@@ -18,10 +20,20 @@
         }
 
         ~ .levelBlock {
-          background-color: unset;
+          &:not(.target) {
+            background-color: unset;
+          }
 
           &.achieved {
             background-color: $gray-50;
+          }
+        }
+
+        &.currentLevel {
+          + .levelBlock {
+            &:not(.target) {
+              background-color: $gray-20;
+            }
           }
         }
       }
@@ -38,6 +50,18 @@
 
   &.achieved {
     background-color: $ups-blue;
+  }
+
+  &.target {
+    background-color: $light-blue;
+  }
+
+  &:hover {
+    &:not(.currentLevel) {
+      ~ .target {
+        background-color: unset;
+      }
+    }
   }
 }
 

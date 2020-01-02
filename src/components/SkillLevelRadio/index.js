@@ -5,14 +5,20 @@ import styles from './skillLevelRadio.module.scss';
 
 const Radio = ({ defaultVal, labelText, options, property, reportValue }) => {
   const [value, setValue] = useState(defaultVal);
-  const [isTarget, setIsTarget] = useState(false);
 
   const handleChange = e => {
     setValue(parseInt(e.target.value));
   };
 
-  const handleClick = isChecked => {
-    setIsTarget(isChecked && !isTarget);
+  const handleClick = (e, optValue) => {
+    if (optValue < options.length && value != 1) {
+      let thisNode = e.target.parentNode.parentNode;
+      for (let i = 0; i <= options.length - optValue; i++) {
+        thisNode.firstChild.firstChild.classList.remove(styles.altColor);
+        thisNode = thisNode.nextSibling;
+      }
+    }
+    value === optValue && e.target.classList.toggle(styles.altColor);
   };
 
   useEffect(() => {
@@ -29,7 +35,6 @@ const Radio = ({ defaultVal, labelText, options, property, reportValue }) => {
             styles.levelBlock,
             optValue === value && styles.currentLevel,
             optValue <= value && styles.achieved,
-            isTarget && optValue === value + 1 && styles.target,
           )}>
           <label htmlFor={`${property}-${valueText}`} className={styles.levelBlockLabel}>
             <input
@@ -38,7 +43,7 @@ const Radio = ({ defaultVal, labelText, options, property, reportValue }) => {
               id={`${property}-${valueText}`}
               name={property}
               onChange={handleChange}
-              onClick={() => handleClick(value === optValue)}
+              onClick={e => handleClick(e, optValue)}
               type="radio"
               value={optValue}
             />

@@ -10,29 +10,25 @@
 
   &:hover {
     .levelBlock {
-      &:not(.target) {
-        background-color: $ups-blue;
-      }
+      background-color: $ups-blue;
 
       &:hover {
         &:not(.currentLevel) {
+          background-color: $ups-blue;
+        }
+
+        &.currentLevel {
           background-color: $light-blue;
         }
 
         ~ .levelBlock {
-          &:not(.target) {
-            background-color: unset;
-          }
+          background-color: unset;
 
           &.achieved {
             background-color: $gray-50;
-          }
-        }
 
-        &.currentLevel {
-          + .levelBlock {
-            &:not(.target) {
-              background-color: $gray-20;
+            .altColor {
+              opacity: 0;
             }
           }
         }
@@ -51,18 +47,6 @@
   &.achieved {
     background-color: $ups-blue;
   }
-
-  &.target {
-    background-color: $light-blue;
-  }
-
-  &:hover {
-    &:not(.currentLevel) {
-      ~ .target {
-        background-color: unset;
-      }
-    }
-  }
 }
 
 .notApplicable {
@@ -76,20 +60,31 @@
 }
 
 .levelBlockLabel {
+  cursor: pointer;
   display: inline-block;
   height: 100%;
   width: 100%;
-
-  &:hover {
-    cursor: pointer;
-  }
 }
 
 .levelBlockInput {
-  height: 0;
+  @include transition($duration: 75ms);
+  appearance: none;
+  background-color: $light-blue;
+  cursor: pointer;
+  height: 100%;
   margin: 0;
   opacity: 0;
-  width: 0;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+
+  .achieved & {
+    &.altColor {
+      opacity: 1;
+    }
+  }
 }
 
 .skillName {

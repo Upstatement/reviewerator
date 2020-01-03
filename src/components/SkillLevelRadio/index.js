@@ -11,14 +11,15 @@ const Radio = ({ defaultVal, labelText, options, property, reportValue }) => {
   };
 
   const handleClick = (e, optValue) => {
-    if (optValue < options.length && value != 1) {
+    if (optValue === value) {
+      e.target.classList.toggle(styles.altColor);
+    } else {
       let thisNode = e.target.parentNode.parentNode;
       for (let i = 0; i <= options.length - optValue; i++) {
         thisNode.firstChild.firstChild.classList.remove(styles.altColor);
         thisNode = thisNode.nextSibling;
       }
     }
-    value === optValue && e.target.classList.toggle(styles.altColor);
   };
 
   useEffect(() => {

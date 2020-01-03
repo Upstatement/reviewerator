@@ -10,25 +10,23 @@
 
   &:hover {
     .levelBlock {
-      background-color: $ups-blue;
+      background-color: $ups-blue; // highlight all blocks within skill
 
       &:hover {
-        &:not(.currentLevel) {
-          background-color: $ups-blue;
-        }
-
         &.currentLevel {
-          background-color: $light-blue;
+          .levelBlockInput {
+            opacity: 1; // if hovering the current level, highlight it in light blue (to show that clicking will toggle it to light blue)
+          }
         }
 
         ~ .levelBlock {
-          background-color: unset;
+          background-color: unset; // remove highlight from blocks to the right of the currently hovered one
 
           &.achieved {
-            background-color: $gray-50;
+            background-color: $gray-50; // if clicking on the block will decrease the level, gray out blocks that will lose their highlight
 
             .altColor {
-              opacity: 0;
+              opacity: 0; // also remove light blue color from any blocks that might have it
             }
           }
         }
@@ -82,7 +80,7 @@
 
   .achieved & {
     &.altColor {
-      opacity: 1;
+      opacity: 1; // show light blue highlight
     }
   }
 }

@@ -1,15 +1,14 @@
 @import '../../styles/functions/ms';
 @import '../../styles/variables/colors';
-$divider-color: $gray-50;
 
 .chartWrapper {
   flex: 3;
   font-family: 'Dia';
   margin: ms(0) auto;
   padding: ms(-8) ms(2) ms(2);
-  background-color: $gray-60;
-  color: white;
-  max-width: 1000px;
+  background-color: $chart-background-color;
+  color: $chart-text-color;
+  max-width: 1200px;
 }
 
 .header {
